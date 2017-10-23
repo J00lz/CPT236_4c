@@ -97,7 +97,7 @@ public interface MyDateInterface  extends Comparable<MyDate>
 
     // Routine to validate that the current time is valid
     public boolean isValid();
-    public boolean isVaid(int newMonth, int newDay, int newYear);
+    public boolean isValid(int newMonth, int newDay, int newYear);
 
 
 

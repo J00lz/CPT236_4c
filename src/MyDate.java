@@ -1,5 +1,5 @@
 // Shawn Ramsey
-// Assignment 04b
+// Assignment 04c
 // All functions working properly
 
 //Usage:
@@ -7,7 +7,10 @@
 // Example: setDate(2, 29, 2016); will return true (due to all dates being valid since the month is february, the day is 29, and the year is 2016(a leap year)
 // Example2: setDate(2, 29, 2017); will return false (due to 2017 not being a leap year and attempting to place 29 days in the month of february (out of bounds))
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Formatter;
+import java.util.Locale;
 
 public class MyDate implements MyDateInterface{
 
@@ -22,6 +25,7 @@ public class MyDate implements MyDateInterface{
     private                 int day;    // 1...31
     private                 int month;  // 1...12
     private                 int year;   // 2000... 2099
+    private                 DOW dayOfWeek = new DOW();
     //private const int MAX_YEAR = 2099;
     public MyDate() {
         day = DAY_MIN;
@@ -29,16 +33,6 @@ public class MyDate implements MyDateInterface{
         year = YEAR_MIN;
     }
 
-    public double test() {
-        int a = 0;
-
-        int b = 11;
-
-        int c = 2;
-
-        double d = (a + b) / c;
-        return d;
-    }
     public boolean isLeapYear()
     {
         // better method? (I had a dream about this for some reason)
@@ -165,39 +159,77 @@ public class MyDate implements MyDateInterface{
    //*********************************************************
    // Added methods
    //*********************************************************
+   // Working
    public boolean isValid() {
-       return false;
+       return isValid(this.month, this.day, this.year);
    }
-
+    // Working
     public boolean isValid(int newMonth, int newDay, int newYear) {
-        return false;
+        if (validateRange(newMonth, MONTH_MIN, MONTH_MAX) && validateRange(newDay, DAY_MIN, checkMonthDays(newMonth)) && validateRange(newYear, YEAR_MIN, YEAR_MAX))
+            return true;
+        else
+            return false;
     }
 
     @Override
     public int compareTo(MyDate otherMyDate) {
-        return 0;
+        if (this.year > otherMyDate.year)
+            // greater than
+            return 1;
+        else if (this.year == otherMyDate.year)
+            if(this.month > otherMyDate.year)
+                // greater than
+                return 1;
+            else if (this.month == otherMyDate.month)
+                if(this.day > otherMyDate.day)
+                    // greater than
+                    return 1;
+                else if (this.day == otherMyDate.day)
+                    // equal to
+                    return 0;
+                else
+                    // less than
+                    return -1;
+            else
+                // less than
+                return -1;
+        else
+            // less than
+            return -1;
     }
 
+    // Not Working
     public DOW getDOW()
     {
+        //DOW.
         return getDOW(this.day, this.month, this.year);
+        //this.DOW.getValue();
     }
-
-    public DOW getDOW(int dy, int min, int yr)
+    // Not Working
+    // Not sure what kind of data type to be returning?
+    public DOW getDOW(int dy, int mon, int yr)
     {
-        return getDOW(dy, min, yr);
-    }
+        LocalDate date = LocalDate.of(dy, mon, yr);
+        DayOfWeek dayOfWeek = DayOfWeek.from(date);
+        return dayOfWeek.getValue();
 
+    }
+    // Not Working
     public DOW getMonth1stDOW() {
-        LocalDate date = LocalDate.now();
-        return date.withDayOfMonth(1);
+        //StringBuilder sb = new StringBuilder();
+        //Formatter formatter = new Formatter(sb, Locale.US);
+
+        //formatter.format("%d-%d-%d", 01, this.month, this.year);
+        //LocalDate date = LocalDate.of(1, this.month, this.year);
+        //getDOW(this.)
+        return getDOW(1, this.month, this.year);
         //return null;
     }
-
+    // Working
     public int getNumOfDaysInYear() {
         return getNumOfDaysInYear(this.year);
     }
-
+    // Working
     public int getNumOfDaysInYear(int yr) {
         if (isLeapYear(yr))
             return 366;

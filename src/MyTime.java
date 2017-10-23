@@ -1,6 +1,6 @@
 // Shawn Ramsey
 // CPT 236
-// Assignment 04b
+// Assignment 04c
 // Currently Working
 public class MyTime implements MyTimeInterface{
 
@@ -121,6 +121,7 @@ public class MyTime implements MyTimeInterface{
 
     public MyTime(int hr, int min, int sec)
     {
+        // update time
         setHours(hr);
         setMinutes(min);
         setSeconds(sec);
@@ -128,6 +129,7 @@ public class MyTime implements MyTimeInterface{
 
     public MyTime(MyTime copyFromMyTime)
     {
+        // update time
         setHours(copyFromMyTime.getHours());
         setMinutes(copyFromMyTime.getMinutes());
         setSeconds(copyFromMyTime.getSeconds());
@@ -139,10 +141,12 @@ public class MyTime implements MyTimeInterface{
         int currentTime = 0;
         int checkTime = 0;
 
+        // convert entire time to seconds
         currentTime += (getHours() * 60) * 60;
         currentTime += getMinutes() * 60;
         currentTime += getSeconds();
 
+        // convert entire time to seconds
         checkTime += (otherMyTime.getHours() * 60) * 60;
         checkTime += otherMyTime.getMinutes() * 60;
         checkTime += otherMyTime.getSeconds();
@@ -157,36 +161,41 @@ public class MyTime implements MyTimeInterface{
         return  (-1);       // Less Than
 
     }
-
+    // working
     public boolean doesTimeSpanOverlap(MyTime ckTime, int durationMins)
     {
         int checkTimeMin = 0;
         int checkTimeMax = 0;
         int compareTime = 0;
 
+        // convert entire time to seconds
         compareTime += (getHours() * 60) * 60;
         compareTime += getMinutes() * 60;
         compareTime += getSeconds();
 
+        // convert entire time to seconds
         checkTimeMin+= (ckTime.getHours() * 60) * 60;
         checkTimeMin += ckTime.getMinutes() * 60;
         checkTimeMin += ckTime.getSeconds();
 
         checkTimeMax = checkTimeMin + (durationMins * 60);
 
+        // compare times
         if ((compareTime > checkTimeMin) && (compareTime < checkTimeMax))
             return true;
         else
             return false;
     }
 
+    // Working
     public boolean updateTime(int deltaHours, int deltaMinutes, int deltaSeconds)
     {
         return (setTime(deltaHours, deltaMinutes, deltaSeconds));
     }
-
+    // Working
     public boolean isValid()
     {
+        // If hours, minutes, and seconds are all within range... return true
         if (validateRange(getHours(), 0, 23) && validateRange(getMinutes(), 0, 59) && validateRange(getSeconds(), 0, 59))
             return true;
         else
