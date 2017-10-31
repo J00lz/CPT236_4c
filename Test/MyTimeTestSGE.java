@@ -21,7 +21,7 @@ public class MyTimeTestSGE {
     //  Enable one of the below (1st one will always work, but 2nd is better)
     ////////////////////////////////////////////////////////////////////////////////
 
-//  4a - Removed since 2nd set should work
+/*  4a - Removed since 2nd set should work
     // Use these definitions if MyTime does NOT have "public static int XXX"
     private static final int  HOURS_MIN       =   0;
     private static final int  HOURS_MAX       =   23;
@@ -29,16 +29,16 @@ public class MyTimeTestSGE {
     private static final int  MINUTES_MAX     =   59;
     private static final int  SECONDS_MIN     =   0;
     private static final int  SECONDS_MAX     =   59;
-
+*/
 
 //  4a - enabled these variables (rather than repeating)
     // Use these definitions if MyTime has setup as "public static int XXX"
-    //private static final int  HOURS_MIN       =   MyTime.HOURS_MIN;
-    //private static final int  HOURS_MAX       =   MyTime.HOURS_MAX;
-    //private static final int  MINUTES_MIN     =   MyTime.MINUTES_MIN;
-    //private static final int  MINUTES_MAX     =   MyTime.MINUTES_MAX;
-    //private static final int  SECONDS_MIN     =   MyTime.SECONDS_MIN;
-    //private static final int  SECONDS_MAX     =   MyTime.SECONDS_MAX;
+    private static final int  HOURS_MIN       =   MyTime.HOURS_MIN;
+    private static final int  HOURS_MAX       =   MyTime.HOURS_MAX;
+    private static final int  MINUTES_MIN     =   MyTime.MINUTES_MIN;
+    private static final int  MINUTES_MAX     =   MyTime.MINUTES_MAX;
+    private static final int  SECONDS_MIN     =   MyTime.SECONDS_MIN;
+    private static final int  SECONDS_MAX     =   MyTime.SECONDS_MAX;
 
 
     // "HOURS_NOON" is based on either of the above variable definitions

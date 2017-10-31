@@ -49,4 +49,26 @@ public class MyTimeTest {
 
         assertEquals("09:23:14 AM",     myTime.printStandard());
     }
+
+    // 4d tests
+    @Test
+    public void isValidTest() {
+        MyTime myTime = new MyTime();
+        assertTrue(myTime.isValid(1, 1, 1));
+
+        myTime.setTime(1, 1, 1);
+        assertTrue(myTime.isValid());
+
+        assertFalse(myTime.isValid(-1, -1, -1));
+    }
+
+    @Test
+    public void updateTimeTest()
+    {
+        MyTime myTime = new MyTime();
+        assertTrue(myTime.updateTime(1, 1, 1));
+        assertFalse(myTime.updateTime(-1,-1,-1));
+    }
+
+
 }   // end class MyTimeTest

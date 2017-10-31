@@ -1,5 +1,5 @@
 // Shawn Ramsey
-// Assignment 04c
+// Assignment 04d
 // All functions working properly
 
 //Usage:
@@ -159,6 +159,11 @@ public class MyDate implements MyDateInterface{
    //*********************************************************
    // Added methods
    //*********************************************************
+    @Override
+    public String toString()
+    {
+        return printShort();
+    }
    // Working
    public boolean isValid() {
        return isValid(this.month, this.day, this.year);
@@ -198,23 +203,23 @@ public class MyDate implements MyDateInterface{
             return -1;
     }
 
-    // Not Working
+    // Working!
     public DOW getDOW()
     {
         //DOW.
         return getDOW(this.day, this.month, this.year);
         //this.DOW.getValue();
     }
-    // Not Working
-    // Not sure what kind of data type to be returning?
+    // Working!
     public DOW getDOW(int dy, int mon, int yr)
     {
-        LocalDate date = LocalDate.of(dy, mon, yr);
-        DayOfWeek dayOfWeek = DayOfWeek.from(date);
-        return dayOfWeek.getValue();
+        LocalDate date = LocalDate.of(yr, mon, dy);
+        DayOfWeek theDayOfWeek = DayOfWeek.from(date);
+        dayOfWeek.setValue(theDayOfWeek.getValue());
+        return dayOfWeek;
 
     }
-    // Not Working
+    // Working!
     public DOW getMonth1stDOW() {
         //StringBuilder sb = new StringBuilder();
         //Formatter formatter = new Formatter(sb, Locale.US);

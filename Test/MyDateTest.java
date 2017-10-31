@@ -1,6 +1,9 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+// Shawn Ramsey
+// Assignment 04d
+
 public class MyDateTest {
     public MyDateTest()
     {;}
@@ -93,6 +96,29 @@ public class MyDateTest {
         // Check the method requiring parameter
         assertEquals(31, myDate.getNumOfDaysInMonth(1));
         assertEquals(28, myDate.getNumOfDaysInMonth(2));
+
+    }
+
+
+    // added for 4d
+    @Test
+    public void getNumOfDaysInYearTest()
+    {
+        MyDate myDate = new MyDate();
+
+        assertEquals(365, myDate.getNumOfDaysInYear(2017));
+        assertEquals(366, myDate.getNumOfDaysInYear(2016));
+    }
+
+    @Test
+    // not sure how to test with objects?
+    public void getMonth1stDOWTest()
+    {
+        MyDate myDate = new MyDate();
+        myDate.setMonth(10);
+        myDate.setYear(2017);
+
+        assertEquals(7, myDate.getMonth1stDOW());
 
     }
 }

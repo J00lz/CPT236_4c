@@ -1,8 +1,6 @@
-// Scott G. Edwards, 10/2/2017
-// Assignment 4c
+// Scott G. Edwards, 10/27/2017
+// Assignment 4d
 // CPT 236 Fall 2017
-
-// Note - this interface is based on Assignment #3d
 
 
 
@@ -17,7 +15,7 @@ public interface MyDateInterface  extends Comparable<MyDate>
     public  static final    int MONTH_MIN   =   1;
     public  static final    int MONTH_MAX   =   12;
     public  static final    int DAY_MIN     =   1;
-    public  static final    int DAY_MAX     =   31;     // Simplification - to be fixed later
+    public  static final    int DAY_MAX     =   31;     // Simplification - replaced by getNumOfDaysInMonth()
     public  static final    int YEAR_MIN    =   2000;
     public  static final    int YEAR_MAX    =   2099;
 
@@ -28,6 +26,21 @@ public interface MyDateInterface  extends Comparable<MyDate>
 
     public  static final    boolean PRINT_LONG  =   true;
     public  static final    boolean PRINT_SHORT =   false;
+
+    public  static  final   int COMPARE_TO_LT       =   -1;
+    public  static  final   int COMPARE_TO_EQ       =   0;
+    public  static  final   int COMPARE_TO_GT       =   +1;
+
+    // Reference/Validation:  https://www.timeanddate.com/date/weekday.html
+    public static   final   int DOW_DEFAULT_MONTH   =   MONTH_MIN;  // Code is assuming 1st month
+    public static   final   int DOW_DEFAULT_DAY     =   DAY_MIN;    // Code is assuming 1st day (of first month)
+//    public static   final   int DOW_DEFAULT_YEAR    =   2017;
+//    public static   final   int DOW_DEFAULT_WKDAY   =   0;          // 1/1/2017 is Sunday (0)
+    public static   final   int DOW_DEFAULT_YEAR    =   YEAR_MIN;
+    public static   final   int DOW_DEFAULT_WKDAY   =   6;          // 1/1/2000 is Saturday (6)
+
+
+
 
 //  Removed - "interface" does not like private variables nor constructors
 //        private                 int month;
@@ -92,38 +105,107 @@ public interface MyDateInterface  extends Comparable<MyDate>
 
 
     // Add new Constructors
-    //public MyDate(int mon, int dy, int yr);
-    //public MyDate(MyDate copyDate);
+    //public MyDate(int mon, int dy, int yr);           // Explicit M/D/Y setting
+    //public MyDate(MyDate copyDate);                   // Copy M/D/Y from copyDate
+
+
+
+    // Routine:     isValid()
+    // Purpose:     Validates the current instance variables for date
+    // Input:       none                (current instance variables)
+    // Output:      boolean             true (should always be true since already validated, but check anyway)
+    // Description: This function re-validates the current instance variables for date
 
     // Routine to validate that the current time is valid
     public boolean isValid();
+
+
+    // Routine:     isValid()
+    // Purpose:     Validates the specified variables for date
+    // Input:       M/D/Y               month/day/year
+    // Output:      boolean             true if the specified M/D/Y is a valid date
+    // Description: This function validates the specified M/D/Y variables as a valid date
+
     public boolean isValid(int newMonth, int newDay, int newYear);
 
 
+    // Routine:     compareTo()
+    // Purpose:     Compare two MyDate instances
+    // Input:       otherDate           2nd MyDate instance
+    // Output:      COMPARE_TO_LT (-1)  this.Date < otherDate
+    //              COMPARE_TO_EQ (0)   this.Date == otherDate
+    //              COMPARE_TO_GT (+1)  this.Date >- otherDate
+    // Description: This function compare two MyDate instances and returns a result indicating
+    //              if this.Date is before (LT) or after (GT), or the same date (EQ)
 
     // Include "@Override" when populate in MyDate
-
-    // Routine to compare current time to otherMyDate.
     @Override public int compareTo(MyDate otherMyDate);     //  (this - otherMyDate) : Neg:LessThan, 0:Equal, Pos:GreaterThan
                                                             // Do not include "@Override" when populate in MyDate
 
+
+    // Routine:     toString()
+    // Purpose:     Java "standard" object status string that is unique for this object
+    // Input:       none
+    // Output:      String         return value from MyDate.pringShort()
+    // Description: This function returns a status string in a manner that is compatible with other
+    //              Java objects
+
     // Routine to print information
-    @Override public String toString();
+    @Override public String toString();                     // Call MyDate.printShort()
+
+
+    // Routine:     getDOW()
+    // Purpose:     Return the Day-of-Week for the current instance's M/D/Y.
+    // Input:       none            (internal variables)
+    // Output:      DOW             instance of DOW class containing the day-of-week
+    // Description: This function calculates the DOW for the current M/D/Y date
 
     // Return the day of the week for the current Date
     public DOW getDOW();
 
+
+    // Routine:     getDOW()
+    // Purpose:     Return the Day-of-Week for the specified M/D/Y.
+    // Input:       M/D/Y           three integers specifying the [Month, Day, Year]
+    // Output:      DOW             instance of DOW class containing the day-of-week
+    // Description: This function calculates the DOW for the specified M/D/Y date.
+    //              Internal values of the current MyDate class are not modified/updated.
+
+    // Assumption:  For #4d - only good dates are being passed (e.g., no error checking & no error return)
+
     // Return the day of the week for the indicated Date
-    public DOW getDOW(int dy, int min, int yr);
+    public DOW getDOW(int mn, int dy, int yr);              // FIXED - corrected parameters
+
+
+    // Routine:     getMonth1stDOW()
+    // Purpose:     Return the Day-of-Week for the current instance's month & year, with day=1,
+    // Input:       none            (internal variables)
+    // Output:      DOW             instance of DOW class containing the day-of-week
+    // Description: This function calculates the DOW for the current month & year, with day=1
+    //              Internal values of the current MyDate class are not modified/updated.
 
     // Return the day of the week for the current date's first day of the month
     public DOW getMonth1stDOW();
 
 
-    // get # days in year so that Calendar can display properly
+
+    // Routine:     getNumOfDaysInYear()
+    // Purpose:     Return the number of days in the year for the current instance.
+    // Input:       none            (internal variables)
+    // Output:      int             # days (either 365 or 366)
+    // Description: This function returns the number of days in the current year
+    //              (get # days in year so that Calendar can display properly)
 
     // Return the number of days in the current year
     public int getNumOfDaysInYear();
+
+
+    // Routine:     getNumOfDaysInYear()
+    // Purpose:     Return the number of days in the year for the specified year
+    // Input:       year            year to be used for calculation #days in year.
+    // Output:      int             # days (either 365 or 366)
+    // Description: This function returns the number of days in the specified year
+    //              (get # days in year so that Calendar can display properly)
 
     // Return the number of days in the s[ecofoed year
     public int getNumOfDaysInYear(int yr);

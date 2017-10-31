@@ -25,11 +25,10 @@ public class MyTime implements MyTimeInterface{
 
     //Sets the time
     public boolean setTime(int newHr, int newMin, int newSec) {
-        setHours(newHr);
-        setMinutes(newMin);
-        setSeconds(newSec);
-
-        return true;
+        if(setHours(newHr) && setMinutes(newMin) && setSeconds(newSec))
+            return true;
+        else
+            return false;
     }
 
     // Prints the time in 24 hour format
@@ -201,4 +200,21 @@ public class MyTime implements MyTimeInterface{
         else
             return false;
     }
+
+    @Override
+    // Working
+    public boolean isValid(int newHours, int newMins, int newSecs) {
+        if (validateRange(newHours, 0, 23) && validateRange(newMins, 0, 59) && validateRange(newSecs, 0, 59))
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    // Working
+    public String toString()
+    {
+        return printStandard();
+    }
+
 }   // end class MyTime
