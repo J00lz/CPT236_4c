@@ -32,6 +32,16 @@ public class MyDate implements MyDateInterface{
         month = MONTH_MIN;
         year = YEAR_MIN;
     }
+    public MyDate(MyDate aMyDate)
+    {
+        this(aMyDate.day, aMyDate.month, aMyDate.year);
+    }
+    public MyDate(int dy, int mn, int yr)
+    {
+        day = dy;
+        month = mn;
+        year = yr;
+    }
 
     public boolean isLeapYear()
     {
@@ -215,7 +225,8 @@ public class MyDate implements MyDateInterface{
     {
         LocalDate date = LocalDate.of(yr, mon, dy);
         DayOfWeek theDayOfWeek = DayOfWeek.from(date);
-        dayOfWeek.setValue(theDayOfWeek.getValue());
+        int numOfDay = theDayOfWeek.getValue();
+        dayOfWeek.setValue(numOfDay);
         return dayOfWeek;
 
     }

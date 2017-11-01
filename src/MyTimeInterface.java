@@ -149,7 +149,7 @@ public interface MyTimeInterface extends Comparable<MyTime>
     //              *** Ignore hours carry out (e.g., no date rollover) ***
 
     // routine to update current time
-    public boolean updateTime( int deltaHours, int deltaMinutes, int deltaSeconds);
+    public MyTime updateTime( int deltaHours, int deltaMinutes, int deltaSeconds);
 
 
 }   //  end interface MyTimeInterface

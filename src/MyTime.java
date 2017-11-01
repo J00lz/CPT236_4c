@@ -7,6 +7,7 @@ public class MyTime implements MyTimeInterface{
     private int hours;      // 0 - 23
     private int minutes;    // 0 - 59
     private int seconds;    // 0 - 59
+    private MyTime timeObject;
 
     public MyTime() {
         hours = 0;
@@ -187,9 +188,10 @@ public class MyTime implements MyTimeInterface{
     }
 
     // Working
-    public boolean updateTime(int deltaHours, int deltaMinutes, int deltaSeconds)
+    public MyTime updateTime(int deltaHours, int deltaMinutes, int deltaSeconds)
     {
-        return (setTime(deltaHours, deltaMinutes, deltaSeconds));
+        timeObject.setTime(deltaHours, deltaMinutes, deltaSeconds);
+        return timeObject;
     }
     // Working
     public boolean isValid()

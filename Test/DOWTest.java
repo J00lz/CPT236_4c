@@ -2,8 +2,6 @@
 // Assignment 4c
 // CPT 236 Fall 2017
 
-// Shawn Ramsey
-// Assignment 04d
 
 import org.junit.Test;
 
