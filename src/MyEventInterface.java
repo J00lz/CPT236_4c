@@ -8,7 +8,7 @@
  */
 
 
-public interface MyEventInterface extends Comparable<MyTime>
+public interface MyEventInterface extends Comparable<MyEvent>
 {
     ////////////////////////////////////////////////////////////////////
     //  4e Assumptions:
@@ -20,9 +20,9 @@ public interface MyEventInterface extends Comparable<MyTime>
     // This interface is intended to implement the "MyEvent" class
 
 
-    public  static  final   int COMPARE_TO_LT       =   -1;
-    public  static  final   int COMPARE_TO_EQ       =   0;
-    public  static  final   int COMPARE_TO_GT       =   +1;
+    int COMPARE_TO_LT       =   -1;
+    int COMPARE_TO_EQ       =   0;
+    int COMPARE_TO_GT       =   +1;
 
 
 
@@ -61,7 +61,7 @@ public interface MyEventInterface extends Comparable<MyTime>
 
     // Routine to compare current time to otherMyEvent (shows error until MyEvent class defined)
     //@Override
-    public int compareTo(MyEvent otherMyEvent);     //  (this - otherMyEvent) : Neg:LessThan, 0:Equal, Pos:GreaterThan
+    int compareTo(MyEvent otherMyEvent);     //  (this - otherMyEvent) : Neg:LessThan, 0:Equal, Pos:GreaterThan
     // Do not include "@Override" when populate in MyEvent
 
 
@@ -74,7 +74,8 @@ public interface MyEventInterface extends Comparable<MyTime>
     //              FGenerate a text summary of the event (use MyTime.printUniversal() and MyDate.printLong() ) [free form otherwise]
 
     // Routine to print information
-    @Override public String toString();
+    @Override
+    String toString();
 
 
     // Routine:     doesTimeSpanOverlap()
@@ -85,7 +86,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     // Description: This function checks to see if there is overlay
 
     // Routine to determine if range of time ckTime..ckTime+durationMIns overlaps current time
-    public boolean doesTimeSpanOverlap(MyTime ckTime, int durationMins);
+    boolean doesTimeSpanOverlap(MyTime ckTime, int durationMins);
 
 
     // Routine:     doesTimeSpanOverlap()
@@ -96,7 +97,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     // Description: This function returns
     //              Java objects
 
-    public boolean doesTimeSpanOverlap(int hr, int mn, int sec, int durationMins);
+    boolean doesTimeSpanOverlap(int hr, int mn, int sec, int durationMins);
 
 
     // Routine:     updateTime()
@@ -108,7 +109,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     //              ***!! Note - MyTimeInterface & MyTime prototypes have changed as of #4e !!****
 
     // routine to update current time
-    public MyTime updateTime( int deltaHours, int deltaMinutes, int deltaSeconds);
+    MyTime updateTime(int deltaHours, int deltaMinutes, int deltaSeconds);
 
 
     // Routine:     isValid()
@@ -119,7 +120,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     // Description: This function re-validates the current instance variables for event
 
     // Routine to validate that the current time is valid
-    public boolean isValid();
+    boolean isValid();
 
 
     // Routine:     isValid()
@@ -132,7 +133,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     // Output:      boolean             true if the specified M/D/Y is a valid date
     // Description: This function validates the specified parametersas a valid event
 
-    public boolean isValid(String name, String desc, MyDate dateStart, MyTime timeStart, int duration);
+    boolean isValid(String name, String desc, MyDate dateStart, MyTime timeStart, int duration);
 
 
     // Routine:     getDOW()
@@ -142,7 +143,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     // Description: This function calculates the DOW for the current eventDdate
 
     // Return the day of the week for the current eventDate
-    public DOW getDOW();
+    DOW getDOW();
 
 
     // Routine:     getDOW()
@@ -155,7 +156,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     // Assumption:  For #4d - only good dates are being passed (e.g., no error checking & no error return)
 
     // Return the day of the week for the indicated Date
-    public DOW getDOW(int mn, int dy, int yr);
+    DOW getDOW(int mn, int dy, int yr);
 
 
     // Routine:     getMonth1stDOW()
@@ -166,7 +167,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     //              Internal values of the current MyDate class are not modified/updated.
 
     // Return the day of the week for the current eventDate's first day of the month
-    public DOW getMonth1stDOW();
+    DOW getMonth1stDOW();
 
 
 
@@ -178,7 +179,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     //              (get # days in year so that Calendar can display properly)
 
     // Return the number of days in the current year
-    public int getNumOfDaysInYear();
+    int getNumOfDaysInYear();
 
 
     // Routine:     getNumOfDaysInYear()
@@ -189,7 +190,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     //              (get # days in year so that Calendar can display properly)
 
     // Return the number of days in the s[ecofoed year
-    public int getNumOfDaysInYear(int yr);
+    int getNumOfDaysInYear(int yr);
 
 
     // Routine:     doEventsOverlap()
@@ -200,7 +201,7 @@ public interface MyEventInterface extends Comparable<MyTime>
     // Description: This function checks to see if there is overlay
 
     // Routine to determine if range of time ckTime..ckTime+durationMIns overlaps current time
-    public boolean doEventsOverlap(MyEvent ckEvent);
+    boolean doEventsOverlap(MyEvent ckEvent);
 
 
 
