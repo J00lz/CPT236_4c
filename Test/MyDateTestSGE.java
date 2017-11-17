@@ -35,7 +35,8 @@ public class MyDateTestSGE
 
     // Default constructor for MyDateTestSGE class
     public MyDateTestSGE()
-    {;} //  end constructor MyDateTestSGE()
+    {
+    } //  end constructor MyDateTestSGE()
 
 
     // Routine:  MyDate default Constructor Test
@@ -369,10 +370,7 @@ public class MyDateTestSGE
         //  if ((year modulo 4 is 0) and (year modulo 100 is not 0))
         //  or (year modulo 400 is 0)
         //  then true
-        if ( ( ( (yr%4) == 0 ) && ( (yr%100) != 0) ) || ( (yr%400) == 0) )
-            return (true);
-        else
-            return (false);
+        return (((yr % 4) == 0) && ((yr % 100) != 0)) || ((yr % 400) == 0);
 
     }   //  end calcLeapYear()
 
@@ -757,7 +755,7 @@ public class MyDateTestSGE
                     DOW dow1    =   myDate.getMonth1stDOW();
                     int dow2    =   calcDayOfWeek(m, DAY_MIN, y);
                     String str =  "Date: " + myDate.toString() + "   FirstDOW:  dow1=" + dow1.getValue() + "  dow2=" + dow2;
-                    //System.out.println( str );
+                    System.out.println( str );
                     assertEquals(str, dow1.getValue(), dow2);
 
                 }   //  end for (d)

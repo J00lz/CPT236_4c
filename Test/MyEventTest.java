@@ -15,8 +15,6 @@ public class MyEventTest {
 
         assertEquals(-1, myEvent.compareTo(myEvent2));
         assertEquals(0, myEvent2.compareTo(myEvent2));
-
-
     }
 
     @Test
@@ -27,7 +25,6 @@ public class MyEventTest {
 
         assertFalse(myEvent2.doesTimeSpanOverlap(myEvent.getEventTimeStart(), 3600));
         assertTrue(myEvent.doesTimeSpanOverlap(myEvent2.getEventTimeStart(), 3600));
-
     }
 
     @Test
@@ -40,7 +37,6 @@ public class MyEventTest {
         //assertFalse(myEvent.updateTime(-1,5,5);
         //assertFalse(myEvent.updateTime(5,-1,5);
         //assertFalse(myEvent.updateTime(5,5,-1);
-
     }
 
     @Test
@@ -53,7 +49,5 @@ public class MyEventTest {
         assertFalse(myEvent.isValid(""));
         assertTrue(myEvent.isValid("Testing", "Test Desc", new MyDate(18,06,2000), new MyTime(5, 5, 5), 3600));
     }
-
-
 
 }

@@ -55,10 +55,7 @@ public class MyDate implements MyDateInterface{
 
     public boolean isLeapYear(int yr)
     {
-        if (( (yr % 4 == 0) && (yr % 100 != 0) ) || (yr % 400 == 0) )
-            return true;
-        else
-            return false;
+        return ((yr % 4 == 0) && (yr % 100 != 0)) || (yr % 400 == 0);
     }
     public int getNumOfDaysInMonth()
     {
@@ -86,19 +83,13 @@ public class MyDate implements MyDateInterface{
     private boolean validateRange(int value, int min, int max)
     {
         // is it above or equal to the min? and below or equal to the max?
-        if ( (value >= min) && (value <= max) )
-            return true;
-        else
-            return false;
+        return (value >= min) && (value <= max);
     }
 
     //Sets the date
     public boolean setDate(int newMonth, int newDay, int newYear)
     {
-        if (setMonth(newMonth) && setYear(newYear) && setDay(newDay))
-            return true;
-        else
-            return false;
+        return setMonth(newMonth) && setYear(newYear) && setDay(newDay);
     }
 
     // Sets the Months
@@ -180,10 +171,7 @@ public class MyDate implements MyDateInterface{
    }
     // Working
     public boolean isValid(int newMonth, int newDay, int newYear) {
-        if (validateRange(newMonth, MONTH_MIN, MONTH_MAX) && validateRange(newDay, DAY_MIN, checkMonthDays(newMonth)) && validateRange(newYear, YEAR_MIN, YEAR_MAX))
-            return true;
-        else
-            return false;
+        return validateRange(newMonth, MONTH_MIN, MONTH_MAX) && validateRange(newDay, DAY_MIN, checkMonthDays(newMonth)) && validateRange(newYear, YEAR_MIN, YEAR_MAX);
     }
 
     @Override
@@ -217,11 +205,11 @@ public class MyDate implements MyDateInterface{
     public DOW getDOW()
     {
         //DOW.
-        return getDOW(this.day, this.month, this.year);
+        return getDOW(this.month, this.day, this.year);
         //this.DOW.getValue();
     }
     // Working!
-    public DOW getDOW(int dy, int mon, int yr)
+    public DOW getDOW(int mon, int dy, int yr)
     {
         LocalDate date = LocalDate.of(yr, mon, dy);
         DayOfWeek theDayOfWeek = DayOfWeek.from(date);
